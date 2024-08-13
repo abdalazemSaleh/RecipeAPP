@@ -36,7 +36,6 @@ extension RecipeAPIRequest: APIRequestConfiguration {
             return "/api/recipes/v2"
         case .getRecipeDetails(let id, _):
             let path = "/api/recipes/v2/" + id
-            print("Path is", path)
             return path
         }
     }
