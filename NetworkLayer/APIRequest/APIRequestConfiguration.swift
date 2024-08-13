@@ -20,7 +20,6 @@ extension APIRequestConfiguration {
     var baseHeaders: HTTPHeaders {
         let headers = [
             "Accept": "application/json",
-            "X-API-Key": "sand_afe1f1ab-f72f-475f-b898-17ab37f5eda9"
         ]
         return headers
     }
@@ -28,10 +27,10 @@ extension APIRequestConfiguration {
     var components: URLComponents {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "api.liteapi.travel"
+        components.host = "api.edamam.com"
         components.path = path
-        components.queryItems = queryParameters?.map {_ in
-            URLQueryItem(name: "countryCode", value: "EG")
+        components.queryItems = queryParameters?.map { parameter in
+            URLQueryItem(name: parameter.key, value: parameter.value)
         }
         return components
     }

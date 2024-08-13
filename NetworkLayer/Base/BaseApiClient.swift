@@ -36,6 +36,7 @@ struct BaseAPIClient: BaseAPIClientProtocol {
             }
             throw SessionDataTaskError.unknow
         }
+        
         let decoder = JSONDecoder()
         let decodedData = try decoder.decode(T.self, from: data)
         return decodedData
