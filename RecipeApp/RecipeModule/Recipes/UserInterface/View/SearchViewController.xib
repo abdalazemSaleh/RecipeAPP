@@ -1,22 +1,132 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="RecipeApp" customModuleProvider="target">
             <connections>
+                <outlet property="headerView" destination="kFu-1v-669" id="myv-Wz-M22"/>
+                <outlet property="healthFilterCollectionView" destination="hNT-EB-fu0" id="tIc-Gg-azz"/>
+                <outlet property="recipesTableView" destination="F10-aI-qyU" id="6vA-gv-dAa"/>
+                <outlet property="searchTextField" destination="chk-nl-e97" id="oph-mw-er1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="welcomeLabel" destination="rvZ-nI-BQ1" id="IHh-os-Zni"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFu-1v-669" userLabel="HeaderView">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="269"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gPr-dA-k5E">
+                            <rect key="frame" x="20" y="64" width="353" height="173"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvZ-nI-BQ1">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="37"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NEq-8i-FK8">
+                                    <rect key="frame" x="0.0" y="61" width="353" height="112"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for recipe" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="chk-nl-e97" customClass="GFTextField" customModule="RecipeApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="XAJ-il-reL"/>
+                                            </constraints>
+                                            <color key="textColor" name="TextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="name"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" systemColor="systemGray4Color"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage">
+                                                    <imageReference key="value" image="magnifyingglass" catalog="system" variableValue="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                    <real key="value" value="32"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="magnifyingglass" catalog="system"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-EB-fu0">
+                                            <rect key="frame" x="0.0" y="64" width="353" height="48"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="Q3Z-xy-qcy"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jpr-YC-qcD">
+                                                <size key="itemSize" width="88" height="48"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                        </collectionView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="GFPrimary"/>
+                    <constraints>
+                        <constraint firstItem="gPr-dA-k5E" firstAttribute="top" secondItem="kFu-1v-669" secondAttribute="top" constant="64" id="BjF-az-k7a"/>
+                        <constraint firstAttribute="height" constant="269" id="Jae-ZS-e3L"/>
+                        <constraint firstItem="gPr-dA-k5E" firstAttribute="leading" secondItem="kFu-1v-669" secondAttribute="leading" constant="20" id="Rzd-Kh-WCa"/>
+                        <constraint firstAttribute="bottom" secondItem="gPr-dA-k5E" secondAttribute="bottom" constant="32" id="lrs-5Q-ykJ"/>
+                        <constraint firstAttribute="trailing" secondItem="gPr-dA-k5E" secondAttribute="trailing" constant="20" id="oFd-L5-qM5"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F10-aI-qyU">
+                    <rect key="frame" x="12" y="293" width="369" height="525"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="kFu-1v-669" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5wG-5a-uU9"/>
+                <constraint firstItem="F10-aI-qyU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="BSC-bM-laV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F10-aI-qyU" secondAttribute="trailing" constant="12" id="IpH-oX-Ncf"/>
+                <constraint firstItem="kFu-1v-669" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PRU-kM-1LR"/>
+                <constraint firstAttribute="trailing" secondItem="kFu-1v-669" secondAttribute="trailing" id="U3O-y2-Kkc"/>
+                <constraint firstItem="F10-aI-qyU" firstAttribute="top" secondItem="kFu-1v-669" secondAttribute="bottom" constant="24" id="h73-Jk-abb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="F10-aI-qyU" secondAttribute="bottom" id="qaS-og-S11"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <namedColor name="GFPrimary">
+            <color red="0.99215686274509807" green="0.62745098039215685" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.20000001788139343" green="0.20000001788139343" blue="0.20000001788139343" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

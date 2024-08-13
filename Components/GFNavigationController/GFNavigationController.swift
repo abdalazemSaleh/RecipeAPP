@@ -8,6 +8,8 @@
 import UIKit
 
 class GFNavigationController: UINavigationController {
+    
+    private var searchModuleFactory = SearchModuleFactory()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +17,8 @@ class GFNavigationController: UINavigationController {
     }
     
     func setUpNavigationController() {
-        self.viewControllers = [SearchViewController()]
+        if let searchViewController = searchModuleFactory.makeViewController() as? SearchViewController {
+            self.viewControllers = [searchViewController]
+        }
     }
 }

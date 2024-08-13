@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol RecipeRepositoryProtocol: RecipeRepositoryGettable { }
+protocol RecipesRepositoryProtocol: RecipesRepositoryGettable { }
 
-protocol RecipeRepositoryGettable {
+protocol RecipesRepositoryGettable {
     func getRecipes(_ parameters: RecipesParametersProtocol) async throws -> [RecipeRepositoryResponseProtocol]?
     func getRecipeBy(_ id: String, parameters: RecipesParametersProtocol) async throws -> RecipeDetailsRepositoryResponseProtocol?
 }

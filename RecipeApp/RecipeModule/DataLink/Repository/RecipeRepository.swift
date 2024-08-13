@@ -12,7 +12,7 @@ protocol RecipeRepositoryDependenciesProtocol {
     var client: RecipeAPIClientProtocol { get }
 }
 
-struct RecipeRepository {
+final class RecipeRepository: RecipesRepositoryProtocol {
     
     init(dependencies: RecipeRepositoryDependenciesProtocol) {
         self.client = dependencies.client
@@ -24,8 +24,9 @@ struct RecipeRepository {
         
 }
 
+// MARK: - Get Recipes List
 
-extension RecipeRepository: RecipeRepositoryProtocol {
+extension RecipeRepository {
     func getRecipes(_ parameters: any RecipesParametersProtocol) async throws -> [RecipeRepositoryResponseProtocol]? {
         var recipes: [RecipeRepositoryResponseProtocol]?
         do {
@@ -41,6 +42,7 @@ extension RecipeRepository: RecipeRepositoryProtocol {
     }
 }
 
+// MARK: - Get Recipes Details
 
 extension RecipeRepository {
     func getRecipeBy(_ id: String, parameters: any RecipesParametersProtocol) async throws -> RecipeDetailsRepositoryResponseProtocol? {
