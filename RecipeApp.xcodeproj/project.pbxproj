@@ -28,6 +28,8 @@
 		7F8160342C6B975C00FEFCD5 /* RecipeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160332C6B975C00FEFCD5 /* RecipeAPIClient.swift */; };
 		7F8160362C6BAEE100FEFCD5 /* RecipeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160352C6BAEE100FEFCD5 /* RecipeRepositoryProtocol.swift */; };
 		7F8160382C6BAEE700FEFCD5 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160372C6BAEE700FEFCD5 /* RecipeRepository.swift */; };
+		7F81603E2C6BB60000FEFCD5 /* RecipesModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81603D2C6BB60000FEFCD5 /* RecipesModuleFactory.swift */; };
+		7F8160402C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81603F2C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		7F8160332C6B975C00FEFCD5 /* RecipeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIClient.swift; sourceTree = "<group>"; };
 		7F8160352C6BAEE100FEFCD5 /* RecipeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7F8160372C6BAEE700FEFCD5 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
+		7F81603D2C6BB60000FEFCD5 /* RecipesModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModuleFactory.swift; sourceTree = "<group>"; };
+		7F81603F2C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				7F8160232C6B964100FEFCD5 /* DataLink */,
-				7F8160262C6B967F00FEFCD5 /* BusinessLogic */,
-				7F8160272C6B96A000FEFCD5 /* UserInterface */,
+				7F8160392C6BB5BE00FEFCD5 /* Recipes */,
+				7F81603A2C6BB5CF00FEFCD5 /* RecipeDetails */,
 			);
 			path = RecipeModule;
 			sourceTree = "<group>";
@@ -289,6 +293,40 @@
 				7F81602F2C6B972A00FEFCD5 /* RecipeDetailsNetworkResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7F8160392C6BB5BE00FEFCD5 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				7F8160262C6B967F00FEFCD5 /* BusinessLogic */,
+				7F8160272C6B96A000FEFCD5 /* UserInterface */,
+				7F81603D2C6BB60000FEFCD5 /* RecipesModuleFactory.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		7F81603A2C6BB5CF00FEFCD5 /* RecipeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				7F81603B2C6BB5E000FEFCD5 /* BusinessLogic */,
+				7F81603C2C6BB5E800FEFCD5 /* UserInterface */,
+				7F81603F2C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift */,
+			);
+			path = RecipeDetails;
+			sourceTree = "<group>";
+		};
+		7F81603B2C6BB5E000FEFCD5 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		7F81603C2C6BB5E800FEFCD5 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserInterface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +446,8 @@
 				7F8160382C6BAEE700FEFCD5 /* RecipeRepository.swift in Sources */,
 				7F815FD72C6B80EC00FEFCD5 /* SceneDelegate.swift in Sources */,
 				7F81600E2C6B914C00FEFCD5 /* APIRequestConfiguration.swift in Sources */,
+				7F81603E2C6BB60000FEFCD5 /* RecipesModuleFactory.swift in Sources */,
+				7F8160402C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift in Sources */,
 				7F8160302C6B972A00FEFCD5 /* RecipeDetailsNetworkResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
