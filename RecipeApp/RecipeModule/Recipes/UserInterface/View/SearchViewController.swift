@@ -65,6 +65,33 @@ class SearchViewController: UIViewController {
         headerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     }
     
+    private func searchButtonAction() {
+        self.searchTextField.becomeFirstResponder()
+    }
+    
+    private func reloadTableView() {
+        emptyStateView.isHidden = true
+        recipesTableView.isHidden = false
+        recipesTableView.reloadData()
+    }
+    
+    private func showEmptyState() {
+        emptyStateView.isHidden = false
+        recipesTableView.isHidden = true
+        recipesTableView.reloadData()
+    }
+    
+    private func startLoading() {
+        emptyStateView.isHidden = true
+        recipesTableView.isHidden = true
+        activeIndicator.startAnimating()
+    }
+}
+
+
+// MARK: - BINDE VIEW MODEL
+
+extension SearchViewController {
     private func bindViewModel() {
         
         // recipesArray
@@ -123,27 +150,5 @@ class SearchViewController: UIViewController {
                     }
             }
             .store(in: &cancellables)
-    }
-    
-    private func searchButtonAction() {
-        self.searchTextField.becomeFirstResponder()
-    }
-    
-    private func reloadTableView() {
-        emptyStateView.isHidden = true
-        recipesTableView.isHidden = false
-        recipesTableView.reloadData()
-    }
-    
-    private func showEmptyState() {
-        emptyStateView.isHidden = false
-        recipesTableView.isHidden = true
-        recipesTableView.reloadData()
-    }
-    
-    private func startLoading() {
-        emptyStateView.isHidden = true
-        recipesTableView.isHidden = true
-        activeIndicator.startAnimating()
     }
 }
