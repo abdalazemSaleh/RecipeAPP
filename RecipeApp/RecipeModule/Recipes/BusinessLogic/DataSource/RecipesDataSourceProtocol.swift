@@ -8,6 +8,6 @@
 import Foundation
 
 protocol RecipesDataSourceProtocol {
-    var recipes: [Recipe] { get set }
+    var recipes: Recipe? { get set }
     var isLoading: Bool { get set }
 }

@@ -25,10 +25,28 @@ final class RecipesUseCase: RecipesUseCaseProtocol {
         self.dataSource = dependencie.dataSource
         self.repository = dependencie.repository
     }
+    
+    // MARK: - FUNCTIONS
+    
+    private func convert(_ recipeResponse: RecipeRepositoryResponseProtocol) -> Recipe {
+        Recipe(
+            count: recipeResponse.count ?? 0,
+            nextPageId: recipeResponse.nextPageId?.contParameter ?? "",
+            hits: recipeResponse.hits?.compactMap { recipe in
+                RecipeModel(
+                    uri: recipe.uri ?? "",
+                    label: recipe.label ?? "Not Founded",
+                    image: recipe.image ?? "",
+                    source: recipe.source ?? "Not Founded"
+                )
+            } ?? []
+        )
+    }
+    
 }
 
 extension RecipesUseCase {
-    func getRecipes(with searchKey: String, and healthFilter: String) async throws -> [Recipe] {
+    func getRecipes(with searchKey: String, and healthFilter: String, pageID: String) async throws -> Recipe? {
         dataSource.isLoading = true
 
         var parameters = Constants.baseQueryItems
@@ -36,18 +54,16 @@ extension RecipesUseCase {
         if healthFilter != "Non" {
             parameters["healthFilter"] = healthFilter
         }
+        if !pageID.isEmpty {
+            parameters["_cont"] = pageID
+        }
                 
-        guard let recipes = try await repository.getRecipes(RecipesParameters(parameters: parameters)) else {
-            return []
+        print(parameters)
+        
+        guard let recipeResponse = try await repository.getRecipes(RecipesParameters(parameters: parameters)) else {
+            throw RepositoryError.noData
         }
-        dataSource.recipes = recipes.map { recipe in
-            Recipe(
-                uri: recipe.uri ?? "",
-                label: recipe.label ?? "Not Founded",
-                image: recipe.image ?? "",
-                source: recipe.source ?? "Not Founded"
-            )
-        }
+        dataSource.recipes = convert(recipeResponse)
         dataSource.isLoading = false
         return dataSource.recipes
     }

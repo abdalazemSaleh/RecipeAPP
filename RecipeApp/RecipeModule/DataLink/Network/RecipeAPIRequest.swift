@@ -67,27 +67,3 @@ extension RecipeAPIRequest: APIRequestConfiguration {
 protocol RecipesParametersProtocol {
     var parameters: [String: String] { get }
 }
-
-
-/*
- 
- label: "Vegetarian Pad See Ew",
- image: "Vegetarian Pad See Ew",
- calories: 1337.3201,
- totalWeight: 0.0,
- totalTime: 0.0,
- dietLabels: [],
- ingredientLines: [
- "3 cloves garlic, minced",
- "1 bunch Napa cabbage, Chinese broccoli,
- or bok choy, cleaned and sliced",
- "4 tablespoons safflower,
- canola, or vegetable oil",
- "6 ounces wide rice noodles",
- "2 lemon wedges",
- "2 eggs",
- "3-4 tablespoons black soy sauce (see introduction for details)",
- "1 teaspoon sugar",
- "1 dash fish sauce"
- ]
- */

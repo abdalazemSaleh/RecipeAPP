@@ -9,7 +9,13 @@ import Foundation
 
 struct RecipesNetworkResponse: Codable {
     let from, to, count: Int?
+    let links: Links?
     let hits: [RecipeHitNetowrkResponse]?
+    
+    enum CodingKeys: String, CodingKey {
+        case from, to, count, hits
+        case links = "_links"
+    }
 }
 
 struct RecipeHitNetowrkResponse: Codable {
@@ -21,4 +27,12 @@ struct RecipeNetworkResponse: Codable {
     let label: String?
     let image: String?
     let source: String?
+}
+
+struct Links: Codable {
+    let next: Next?
+}
+
+struct Next: Codable {
+    let href: String?
 }

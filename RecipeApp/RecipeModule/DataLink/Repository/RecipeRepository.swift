@@ -27,17 +27,25 @@ final class RecipeRepository: RecipesRepositoryProtocol {
 // MARK: - Get Recipes List
 
 extension RecipeRepository {
-    func getRecipes(_ parameters: any RecipesParametersProtocol) async throws -> [RecipeRepositoryResponseProtocol]? {
-        var recipes: [RecipeRepositoryResponseProtocol]?
+    func getRecipes(_ parameters: any RecipesParametersProtocol) async throws -> RecipeRepositoryResponseProtocol? {
+        var recipes: RecipeRepositoryResponseProtocol?
         do {
-            recipes = try await client.getRecipes(with: parameters)?.hits?.compactMap { recipe in
+            recipes = try await client.getRecipes(with: parameters).map { recipeResponse in
                 RecipeRepositoryResponse(
-                    uri: recipe.recipe?.uri,
-                    label: recipe.recipe?.label,
-                    image: recipe.recipe?.image,
-                    source: recipe.recipe?.source
+                    count: recipeResponse.count,
+                    nextPageId: recipeResponse.links?.next?.href,
+                    hits: recipeResponse.hits?.compactMap { recipe in
+                        HitsRepositoryRespons(
+                            uri: recipe.recipe?.uri,
+                            label: recipe.recipe?.label,
+                            image: recipe.recipe?.image,
+                            source: recipe.recipe?.source
+                        )
+                    }
                 )
             }
+        } catch {
+            print(error.localizedDescription)
         }
         return recipes
     }

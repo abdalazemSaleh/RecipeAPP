@@ -40,7 +40,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = searchViewModel.recipesArray[indexPath.section]
         let recipeDetailsModuleFactory = RecipeDetailsModuleFactory()
-        let recipeID = extractRecipeID(from: recipe.uri)
+        let recipeID = recipe.uri.extractUrl(using: "recipe_")
         let recipeDetailsViewController = recipeDetailsModuleFactory.makeViewController(with: recipeID)
         navTo(recipeDetailsViewController)
     }
@@ -53,9 +53,11 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return 16
     }
     
-    func extractRecipeID(from url: String) -> String {
-        let id = url.components(separatedBy: "recipe_")[1]
-        return id
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == searchViewModel.recipesArray.count - 5 &&  !searchViewModel.nexPageId.isEmpty {
+            Task {
+                await searchViewModel.searchForRecipe()
+            }
+        }
     }
-
 }

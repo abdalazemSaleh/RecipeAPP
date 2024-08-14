@@ -10,20 +10,33 @@ import Foundation
 protocol RecipesRepositoryProtocol: RecipesRepositoryGettable { }
 
 protocol RecipesRepositoryGettable {
-    func getRecipes(_ parameters: RecipesParametersProtocol) async throws -> [RecipeRepositoryResponseProtocol]?
+    func getRecipes(_ parameters: RecipesParametersProtocol) async throws -> RecipeRepositoryResponseProtocol?
     func getRecipeBy(_ id: String, parameters: RecipesParametersProtocol) async throws -> RecipeDetailsRepositoryResponseProtocol?
 }
 
 // MARK: - AccommodationsRepositoryResponseProtocols
 
 protocol RecipeRepositoryResponseProtocol {
+    var count: Int? { get }
+    var nextPageId: String? { get }
+    var hits: [HitsRepositoryResponseProtocol]? { get }
+}
+
+protocol HitsRepositoryResponseProtocol {
     var uri: String? { get }
     var label: String? { get }
     var image: String? { get }
     var source: String? { get }
 }
 
+
 struct RecipeRepositoryResponse: RecipeRepositoryResponseProtocol {
+    var count: Int?
+    var nextPageId: String?
+    var hits: [HitsRepositoryResponseProtocol]?
+}
+
+struct HitsRepositoryRespons: HitsRepositoryResponseProtocol {
     var uri: String?
     var label: String?
     var image: String?

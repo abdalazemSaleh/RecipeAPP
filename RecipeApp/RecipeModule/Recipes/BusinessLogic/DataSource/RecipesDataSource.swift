@@ -8,6 +8,6 @@
 import Foundation
 
 struct RecipesDataSource: RecipesDataSourceProtocol {
-    var recipes: [Recipe] = []
+    var recipes: Recipe?
     var isLoading: Bool = true
 }

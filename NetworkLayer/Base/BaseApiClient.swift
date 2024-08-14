@@ -15,6 +15,9 @@ struct BaseAPIClient: BaseAPIClientProtocol {
     @discardableResult
     func perform<T>(_ configuration: APIRequestConfiguration) async throws -> T? where T : Decodable {
         let request = try configuration.asURLRequest()
+        if let url = request.url {
+            print("Request URL: \(url.absoluteString)")
+        }
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse,
               response.statusCode == 200
