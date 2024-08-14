@@ -17,12 +17,14 @@ protocol RecipesRepositoryGettable {
 // MARK: - AccommodationsRepositoryResponseProtocols
 
 protocol RecipeRepositoryResponseProtocol {
+    var uri: String? { get }
     var label: String? { get }
     var image: String? { get }
     var source: String? { get }
 }
 
 struct RecipeRepositoryResponse: RecipeRepositoryResponseProtocol {
+    var uri: String?
     var label: String?
     var image: String?
     var source: String?

@@ -19,7 +19,7 @@ final class SearchModuleFactory: SearchModuleFactoryProtocol {
             client: RecipeAPIClient(client: BaseAPIClient())
         )
         let repository = RecipeRepository(dependencies: repositoryDependencies)
-        let useCaseDependencies = AccommodationDetailsUseCaseDependencies(
+        let useCaseDependencies = RecipesUseCaseDependencies(
             dataSource: RecipesDataSource(),
             repository: repository
         )
@@ -40,7 +40,7 @@ private struct RecipeRepositoryDependencies: RecipeRepositoryDependenciesProtoco
 
 // MARK: - RecipesUseCaseDependenciesProtocol
 
-private struct AccommodationDetailsUseCaseDependencies: RecipesUseCaseDependenciesProtocol {
+private struct RecipesUseCaseDependencies: RecipesUseCaseDependenciesProtocol {
     var dataSource: RecipesDataSourceProtocol
     var repository: RecipesRepositoryProtocol
 }

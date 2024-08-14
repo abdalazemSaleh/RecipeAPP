@@ -57,3 +57,9 @@ extension UIViewController {
         case error
     }
 }
+
+extension UIViewController {
+    func navTo(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: false)
+    }
+}

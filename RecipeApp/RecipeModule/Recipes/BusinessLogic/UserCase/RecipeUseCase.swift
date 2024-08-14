@@ -36,14 +36,13 @@ extension RecipesUseCase {
         if healthFilter != "Non" {
             parameters["healthFilter"] = healthFilter
         }
-        
-        print("Final parameters is ", parameters)
-        
+                
         guard let recipes = try await repository.getRecipes(RecipesParameters(parameters: parameters)) else {
             return []
         }
         dataSource.recipes = recipes.map { recipe in
             Recipe(
+                uri: recipe.uri ?? "",
                 label: recipe.label ?? "Not Founded",
                 image: recipe.image ?? "",
                 source: recipe.source ?? "Not Founded"

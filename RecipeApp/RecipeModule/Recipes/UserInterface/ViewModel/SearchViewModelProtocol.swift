@@ -27,6 +27,7 @@ protocol SearchViewModelProrocol {
 
 
 struct RecipeViewItem {
+    var uri: String
     var title: String
     var image: String
     var source: String
@@ -35,21 +36,25 @@ struct RecipeViewItem {
 extension RecipeViewItem {
     static let mockData: [RecipeViewItem] = [
         RecipeViewItem(
+            uri: "",
             title: "Recipe 1",
             image: "",
             source: "Resturant 1"
         ),
         RecipeViewItem(
+            uri: "",
             title: "Recipe 2",
             image: "",
             source: "Resturant 2"
         ),
         RecipeViewItem(
+            uri: "",
             title: "Recipe 3",
             image: "",
             source: "Resturant 3"
         ),
         RecipeViewItem(
+            uri: "",
             title: "Recipe 4",
             image: "",
             source: "Resturant 4"

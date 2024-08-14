@@ -43,8 +43,8 @@ class SearchViewController: UIViewController {
     @IBOutlet private(set) weak var activeIndicator: UIActivityIndicatorView!
     @IBOutlet private(set) weak var emptyStateView: EmptyStateView!
     
-    // MARK: - VIEW MODEL
-    
+    // MARK: - VIEW LIFE CYCLE
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()

@@ -15,6 +15,7 @@ protocol RecipesUseCaseProtocol {
 
 
 struct Recipe {
+    var uri: String
     var label: String
     var image: String
     var source: String

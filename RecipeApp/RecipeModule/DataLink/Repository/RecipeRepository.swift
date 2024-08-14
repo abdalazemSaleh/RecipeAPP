@@ -32,6 +32,7 @@ extension RecipeRepository {
         do {
             recipes = try await client.getRecipes(with: parameters)?.hits?.compactMap { recipe in
                 RecipeRepositoryResponse(
+                    uri: recipe.recipe?.uri,
                     label: recipe.recipe?.label,
                     image: recipe.recipe?.image,
                     source: recipe.recipe?.source

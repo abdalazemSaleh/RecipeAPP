@@ -79,6 +79,7 @@ extension SearchViewModel: SearchViewModelProrocol {
             let recipes = try await useCase.getRecipes(with: searchKey, and: healthFilter.rawValue)
             let viewItems = recipes.map { recipe in
                 RecipeViewItem(
+                    uri: recipe.uri,
                     title: recipe.label,
                     image: recipe.image,
                     source: recipe.source

@@ -37,6 +37,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipe = searchViewModel.recipesArray[indexPath.section]
+        let vc = RecipeDetailsViewController(id: extractRecipeID(from: recipe.uri))
+        vc.title = recipe.title
+        navTo(vc)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
@@ -45,4 +52,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return 16
     }
     
+    func extractRecipeID(from url: String) -> String {
+        let id = url.components(separatedBy: "recipe_")[1]
+        return id
+    }
+
 }

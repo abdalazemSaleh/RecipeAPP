@@ -8,7 +8,7 @@
 import Foundation
 
 struct RecipesNetworkResponse: Codable {
-    let from, to, count: Int
+    let from, to, count: Int?
     let hits: [RecipeHitNetowrkResponse]?
 }
 
@@ -17,7 +17,8 @@ struct RecipeHitNetowrkResponse: Codable {
 }
 
 struct RecipeNetworkResponse: Codable {
-    let label: String
-    let image: String
-    let source: String
+    let uri: String?
+    let label: String?
+    let image: String?
+    let source: String?
 }
