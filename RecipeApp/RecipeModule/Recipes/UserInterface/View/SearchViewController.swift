@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     var selectedIndexPath: IndexPath?
     
     private var cancellables: Set<AnyCancellable> = []
-    private var searchViewModel: SearchViewModel
+    private(set) var searchViewModel: SearchViewModel
     
     // MARK: - INIT
     
@@ -36,9 +36,10 @@ class SearchViewController: UIViewController {
     
     @IBOutlet private var headerView: UIView!
     @IBOutlet private var welcomeLabel: UILabel!
-    @IBOutlet private var searchTextField: UITextField!
-    @IBOutlet private var healthFilterCollectionView: UICollectionView!
-    @IBOutlet private var recipesTableView: UITableView!
+    @IBOutlet private(set) var searchTextField: UITextField!
+    @IBOutlet private(set) var healthFilterCollectionView: UICollectionView!
+    @IBOutlet private(set) var recipesTableView: UITableView!
+    @IBOutlet private weak var emptyStateView: EmptyStateView!
     
     // MARK: - VIEW MODEL
     
@@ -47,6 +48,12 @@ class SearchViewController: UIViewController {
         setUpUI()
         setUpCollectionView()
         setUpTableView()
+        setUpTextField()
+        bindViewModel()
+        emptyStateView.buttonAction = { [weak self] in
+            guard let self = self else { return }
+            self.searchButtonAction()
+        }
     }
     
     // MARK: - FUNCTIONS
@@ -67,76 +74,43 @@ class SearchViewController: UIViewController {
             forCellWithReuseIdentifier: HealthFilterCollectionViewCell.identifire
         )
     }
-    
-    private func setUpTableView() {
-        recipesTableView.dataSource = self
-        recipesTableView.delegate = self
-        recipesTableView.separatorStyle = .none
-        recipesTableView.register(
-            UINib(
-                nibName: RecipeTableViewCell.identifire,
-                bundle: nil
-            ),
-            forCellReuseIdentifier: RecipeTableViewCell.identifire
-        )
-    }
-    
-    func bindViewModel() {
-    }
-}
-
-
-extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        HealthFilter.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HealthFilterCollectionViewCell.identifire, for: indexPath) as! HealthFilterCollectionViewCell
-        let title = HealthFilter.allCases[indexPath.row]
-        cell.set(with: title.rawValue)
         
-        let isSelected = (indexPath == selectedIndexPath)
-        cell.updateAppearance(isSelected: isSelected)
-
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let previousIndexPath = selectedIndexPath {
-            let previousCell = collectionView.cellForItem(at: previousIndexPath) as? HealthFilterCollectionViewCell
-            previousCell?.updateAppearance(isSelected: false)
-        }
+    private func bindViewModel() {
         
-        selectedIndexPath = indexPath
-        let cell = collectionView.cellForItem(at: indexPath) as? HealthFilterCollectionViewCell
-        cell?.updateAppearance(isSelected: true)
-    }
-}
-
-extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return RecipeViewItem.mockData.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableViewCell.identifire, for: indexPath) as! RecipeTableViewCell
-        let recipe = RecipeViewItem.mockData[indexPath.section]
-        cell.set(with: recipe)
-        return cell
+        // recipesArray
+        
+        searchViewModel.$recipesArray
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] recipes in
+                guard let self = self else { return }
+                if !recipes.isEmpty {
+                    self.reloadTableView()
+                } else {
+                    self.showEmptyState()
+                }
+            }.store(in: &cancellables)
+        
+        // isLoading
+        
+        
+        // errorMessage
+        
+        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+    private func searchButtonAction() {
+        self.searchTextField.becomeFirstResponder()
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 16
+    private func reloadTableView() {
+        emptyStateView.isHidden = true
+        recipesTableView.isHidden = false
+        recipesTableView.reloadData()
     }
     
+    private func showEmptyState() {
+        emptyStateView.isHidden = false
+        recipesTableView.isHidden = true
+        recipesTableView.reloadData()
+    }
 }

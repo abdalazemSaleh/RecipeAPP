@@ -45,6 +45,10 @@
 		7F8160622C6BF3F400FEFCD5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160612C6BF3F400FEFCD5 /* Colors.swift */; };
 		7F8160662C6BF68300FEFCD5 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8160652C6BF68300FEFCD5 /* RecipeTableViewCell.xib */; };
 		7F8160672C6BF68300FEFCD5 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160642C6BF68300FEFCD5 /* RecipeTableViewCell.swift */; };
+		7F81606A2C6CBF8300FEFCD5 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160692C6CBF8300FEFCD5 /* EmptyStateView.swift */; };
+		7F81606C2C6CC9C400FEFCD5 /* SearchViewController+CollectionViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81606B2C6CC9C400FEFCD5 /* SearchViewController+CollectionViewExtentions.swift */; };
+		7F81606E2C6CC9FF00FEFCD5 /* SearchViewController+UITableViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81606D2C6CC9FF00FEFCD5 /* SearchViewController+UITableViewExtentions.swift */; };
+		7F8160702C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81606F2C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,10 @@
 		7F8160612C6BF3F400FEFCD5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7F8160642C6BF68300FEFCD5 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		7F8160652C6BF68300FEFCD5 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		7F8160692C6CBF8300FEFCD5 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		7F81606B2C6CC9C400FEFCD5 /* SearchViewController+CollectionViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+CollectionViewExtentions.swift"; sourceTree = "<group>"; };
+		7F81606D2C6CC9FF00FEFCD5 /* SearchViewController+UITableViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITableViewExtentions.swift"; sourceTree = "<group>"; };
+		7F81606F2C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TextFieldExtentions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +237,7 @@
 		7F81601D2C6B93DE00FEFCD5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7F8160682C6CBF6900FEFCD5 /* EmptyStateView */,
 				7F8160572C6BE3F000FEFCD5 /* GFTextField */,
 				7F81601E2C6B93EC00FEFCD5 /* GFNavigationController */,
 			);
@@ -320,6 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				7F8160182C6B93B500FEFCD5 /* SearchViewController.swift */,
+				7F81606B2C6CC9C400FEFCD5 /* SearchViewController+CollectionViewExtentions.swift */,
+				7F81606D2C6CC9FF00FEFCD5 /* SearchViewController+UITableViewExtentions.swift */,
+				7F81606F2C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift */,
 				7F8160192C6B93B500FEFCD5 /* SearchViewController.xib */,
 				7F8160632C6BF66C00FEFCD5 /* RecipeTableViewCell */,
 				7F81605C2C6BE8A100FEFCD5 /* HealthFilterCollectionViewCell */,
@@ -412,6 +424,14 @@
 				7F8160652C6BF68300FEFCD5 /* RecipeTableViewCell.xib */,
 			);
 			path = RecipeTableViewCell;
+			sourceTree = "<group>";
+		};
+		7F8160682C6CBF6900FEFCD5 /* EmptyStateView */ = {
+			isa = PBXGroup;
+			children = (
+				7F8160692C6CBF8300FEFCD5 /* EmptyStateView.swift */,
+			);
+			path = EmptyStateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F81606C2C6CC9C400FEFCD5 /* SearchViewController+CollectionViewExtentions.swift in Sources */,
 				7F8160592C6BE3FB00FEFCD5 /* GFTextField.swift in Sources */,
 				7F81604E2C6BBC1B00FEFCD5 /* Constants.swift in Sources */,
 				7F81602E2C6B971800FEFCD5 /* RecipeNetworkResponse.swift in Sources */,
@@ -527,6 +548,7 @@
 				7F8160602C6BE8BA00FEFCD5 /* HealthFilterCollectionViewCell.swift in Sources */,
 				7F8160112C6B914C00FEFCD5 /* BaseApiClient.swift in Sources */,
 				7F8160362C6BAEE100FEFCD5 /* RecipeRepositoryProtocol.swift in Sources */,
+				7F8160702C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift in Sources */,
 				7F8160142C6B914C00FEFCD5 /* SessionsDataTaskError.swift in Sources */,
 				7F815FD52C6B80EC00FEFCD5 /* AppDelegate.swift in Sources */,
 				7F8160472C6BB69D00FEFCD5 /* RecipesDataSourceProtocol.swift in Sources */,
@@ -538,6 +560,7 @@
 				7F8160202C6B940900FEFCD5 /* GFNavigationController.swift in Sources */,
 				7F8160532C6BBFDA00FEFCD5 /* SearchViewModelProtocol.swift in Sources */,
 				7F8160452C6BB68C00FEFCD5 /* RecipeUseCase.swift in Sources */,
+				7F81606A2C6CBF8300FEFCD5 /* EmptyStateView.swift in Sources */,
 				7F8160122C6B914C00FEFCD5 /* BaseApiRequest.swift in Sources */,
 				7F8160342C6B975C00FEFCD5 /* RecipeAPIClient.swift in Sources */,
 				7F8160512C6BBFB300FEFCD5 /* SearchViewModel.swift in Sources */,
@@ -547,6 +570,7 @@
 				7F81600E2C6B914C00FEFCD5 /* APIRequestConfiguration.swift in Sources */,
 				7F81603E2C6BB60000FEFCD5 /* RecipesModuleFactory.swift in Sources */,
 				7F8160402C6BB61500FEFCD5 /* RecipeDetailsModuleFactory.swift in Sources */,
+				7F81606E2C6CC9FF00FEFCD5 /* SearchViewController+UITableViewExtentions.swift in Sources */,
 				7F8160302C6B972A00FEFCD5 /* RecipeDetailsNetworkResponse.swift in Sources */,
 				7F81604C2C6BBB2400FEFCD5 /* APIConfig.swift in Sources */,
 			);

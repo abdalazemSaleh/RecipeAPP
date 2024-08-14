@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="RecipeApp" customModuleProvider="target">
             <connections>
+                <outlet property="emptyStateView" destination="Yio-OF-Uel" id="QGd-PN-wwk"/>
                 <outlet property="headerView" destination="kFu-1v-669" id="myv-Wz-M22"/>
                 <outlet property="healthFilterCollectionView" destination="hNT-EB-fu0" id="tIc-Gg-azz"/>
                 <outlet property="recipesTableView" destination="F10-aI-qyU" id="6vA-gv-dAa"/>
@@ -95,26 +96,40 @@
                         <constraint firstAttribute="trailing" secondItem="gPr-dA-k5E" secondAttribute="trailing" constant="20" id="oFd-L5-qM5"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F10-aI-qyU">
-                    <rect key="frame" x="12" y="293" width="369" height="525"/>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F10-aI-qyU">
+                    <rect key="frame" x="12" y="285" width="369" height="533"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yio-OF-Uel" customClass="EmptyStateView" customModule="RecipeApp" customModuleProvider="target">
+                    <rect key="frame" x="20" y="301" width="353" height="485"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="EmptyState"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="message" value="There is no data to show please search for recipe"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Search"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="kFu-1v-669" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5wG-5a-uU9"/>
-                <constraint firstItem="F10-aI-qyU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="BSC-bM-laV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F10-aI-qyU" secondAttribute="trailing" constant="12" id="IpH-oX-Ncf"/>
+                <constraint firstItem="Yio-OF-Uel" firstAttribute="top" secondItem="kFu-1v-669" secondAttribute="bottom" constant="32" id="6wP-Ne-kad"/>
+                <constraint firstItem="F10-aI-qyU" firstAttribute="top" secondItem="kFu-1v-669" secondAttribute="bottom" constant="16" id="Efa-Dm-WIK"/>
+                <constraint firstItem="F10-aI-qyU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="ORd-fN-cku"/>
                 <constraint firstItem="kFu-1v-669" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PRU-kM-1LR"/>
                 <constraint firstAttribute="trailing" secondItem="kFu-1v-669" secondAttribute="trailing" id="U3O-y2-Kkc"/>
-                <constraint firstItem="F10-aI-qyU" firstAttribute="top" secondItem="kFu-1v-669" secondAttribute="bottom" constant="24" id="h73-Jk-abb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="F10-aI-qyU" secondAttribute="bottom" id="qaS-og-S11"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F10-aI-qyU" secondAttribute="trailing" constant="12" id="ZND-Ty-rLu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Yio-OF-Uel" secondAttribute="bottom" constant="32" id="hcq-Mo-OuR"/>
+                <constraint firstItem="F10-aI-qyU" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="wNh-oy-rOM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yio-OF-Uel" secondAttribute="trailing" constant="20" id="wXZ-jz-D9y"/>
+                <constraint firstItem="Yio-OF-Uel" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="xuL-H1-XKF"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
+        <image name="EmptyState" width="500" height="500"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <namedColor name="GFPrimary">
             <color red="0.99215686274509807" green="0.62745098039215685" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

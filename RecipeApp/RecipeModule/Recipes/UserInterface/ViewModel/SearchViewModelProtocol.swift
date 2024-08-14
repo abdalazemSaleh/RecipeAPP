@@ -27,10 +27,9 @@ enum HealthFilter: String, CaseIterable {
 protocol SearchViewModelProrocol {
     var isLoading: Bool { get set }
     var errorMessage: String { get set }
-    var searchKey: String { get set }
     var healthFilter: HealthFilter { get set }
     var recipesArray: [RecipeViewItem]{ get set }
-    func getRecipes() async
+    func searchForRecipe(by searchKey: String) async
 }
 
 

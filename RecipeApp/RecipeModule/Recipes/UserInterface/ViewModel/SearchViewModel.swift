@@ -16,20 +16,19 @@ final class SearchViewModel {
     
     // MARK: - PROPERTYS
     
-//    var isLoading = CurrentValueSubject<Bool, Never>(true)
-//    var errorMessage = CurrentValueSubject<String, Never>("")
-//    var searchKey = CurrentValueSubject<String, Never>("ch")
-//    var healthFilter = CurrentValueSubject<HealthFilter, Never>(.DairyFree)
-//    var recipesArray = CurrentValueSubject<[RecipeViewItem], Never>([])
+    //    var isLoading = CurrentValueSubject<Bool, Never>(true)
+    //    var errorMessage = CurrentValueSubject<String, Never>("")
+    //    var searchKey = CurrentValueSubject<String, Never>("ch")
+    //    var healthFilter = CurrentValueSubject<HealthFilter, Never>(.DairyFree)
+    //    var recipesArray = CurrentValueSubject<[RecipeViewItem], Never>([])
     
-   @Published var isLoading: Bool = true
-   @Published var errorMessage: String = ""
-   @Published var searchKey: String = "s"
-   @Published var healthFilter: HealthFilter = .DairyFree
-   @Published var recipesArray: [RecipeViewItem] = []
+    @Published var isLoading: Bool = true
+    @Published var errorMessage: String = ""
+    @Published var healthFilter: HealthFilter = .DairyFree
+    @Published var recipesArray: [RecipeViewItem] = []
     
     private let useCase: RecipesUseCaseProtocol
-        
+    
     // MARK: - INIT
     
     init(dependencies: SearchViewModelDependenciesProtocol) {
@@ -41,11 +40,10 @@ final class SearchViewModel {
 // MARK: - Search ViewModelProtocol
 
 extension SearchViewModel: SearchViewModelProrocol {
-    func getRecipes() async {
-        print("search key is", searchKey)
-//        isLoading.send(true)
+    func searchForRecipe(by searchKey: String) async {
+        //        isLoading.send(true)
         do {
-//            print("Search key is ", searchKey.value)
+            //            print("Search key is ", searchKey.value)
             let recipes = try await useCase.getRecipes(with: searchKey, and: healthFilter.rawValue)
             let viewItems = recipes.map { recipe in
                 RecipeViewItem(
@@ -55,11 +53,11 @@ extension SearchViewModel: SearchViewModelProrocol {
                 )
             }
             recipesArray = viewItems
-//            recipesArray.send(viewItems)
+            //            recipesArray.send(viewItems)
         } catch {
-//            errorMessage.send(error.localizedDescription)
-//            isLoading.send(true)
+            //            errorMessage.send(error.localizedDescription)
+            //            isLoading.send(true)
         }
-//        isLoading.send(false)
+        //        isLoading.send(false)
     }
 }
