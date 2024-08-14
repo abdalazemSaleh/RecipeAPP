@@ -16,7 +16,7 @@ class RecipeTableViewCell: UITableViewCell {
     // MARK: - IBOutlet
     
     @IBOutlet private var cellView: UIView!
-    @IBOutlet private var recipeImage: UIImageView!
+    @IBOutlet private var recipeImage: CachedImageView!
     @IBOutlet private var recipeTitleLabel: UILabel!
     @IBOutlet private var recipeSourceLabel: UILabel!
     
@@ -29,8 +29,7 @@ class RecipeTableViewCell: UITableViewCell {
     // MARK: - FUNCTIONS
     
     func set(with recipe: RecipeViewItem) {
-        // image goes here
-        
+        recipeImage.imageURL = recipe.image.asURL
         recipeTitleLabel.text = recipe.title
         recipeSourceLabel.text = recipe.source
     }
@@ -44,5 +43,8 @@ class RecipeTableViewCell: UITableViewCell {
         cellView.layer.shadowOpacity = 0.1
         cellView.layer.shadowRadius = 2
         cellView.layer.shadowPath = UIBezierPath(roundedRect: cellView.bounds, cornerRadius: cellView.layer.cornerRadius).cgPath
+        
+        recipeImage.layer.cornerRadius = 16
+        recipeImage.layer.masksToBounds = true
     }
 }

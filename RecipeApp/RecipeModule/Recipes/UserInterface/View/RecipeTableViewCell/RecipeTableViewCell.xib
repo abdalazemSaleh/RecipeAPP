@@ -19,18 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hF-77-g8f">
-                        <rect key="frame" x="8" y="8" width="423" height="134"/>
+                        <rect key="frame" x="2" y="2" width="435" height="146"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-4D-lYq">
-                                <rect key="frame" x="0.0" y="0.0" width="423" height="134"/>
+                                <rect key="frame" x="8" y="8" width="419" height="130"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cvU-cs-tub">
-                                        <rect key="frame" x="0.0" y="1.6666666666666572" width="169.33333333333334" height="131"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cvU-cs-tub" customClass="CachedImageView" customModule="RecipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="130"/>
+                                        <color key="tintColor" name="TextColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="defaultImage" value="photo.fill" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="MTs-Ft-834">
-                                        <rect key="frame" x="185.33333333333337" y="38.333333333333343" width="237.66666666666663" height="57.666666666666657"/>
+                                        <rect key="frame" x="183.66666666666663" y="36.333333333333343" width="235.33333333333337" height="57.666666666666657"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reipe 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zal-hd-L9N">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reipe 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zal-hd-L9N">
                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="19.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" name="TextColor"/>
@@ -46,25 +50,25 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="cvU-cs-tub" firstAttribute="height" secondItem="qoO-4D-lYq" secondAttribute="height" id="86O-2O-Dvd"/>
+                                    <constraint firstItem="cvU-cs-tub" firstAttribute="height" secondItem="qoO-4D-lYq" secondAttribute="height" id="g59-sr-H7U"/>
                                     <constraint firstItem="cvU-cs-tub" firstAttribute="width" secondItem="qoO-4D-lYq" secondAttribute="width" multiplier="0.4" id="l92-3g-vQw"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="qoO-4D-lYq" secondAttribute="trailing" id="ANA-oV-Jf1"/>
-                            <constraint firstAttribute="bottom" secondItem="qoO-4D-lYq" secondAttribute="bottom" id="cew-2W-EJS"/>
-                            <constraint firstItem="qoO-4D-lYq" firstAttribute="top" secondItem="5hF-77-g8f" secondAttribute="top" id="jKU-iV-tje"/>
-                            <constraint firstItem="qoO-4D-lYq" firstAttribute="leading" secondItem="5hF-77-g8f" secondAttribute="leading" id="yR8-eG-R73"/>
+                            <constraint firstAttribute="trailing" secondItem="qoO-4D-lYq" secondAttribute="trailing" constant="8" id="ANA-oV-Jf1"/>
+                            <constraint firstAttribute="bottom" secondItem="qoO-4D-lYq" secondAttribute="bottom" constant="8" id="cew-2W-EJS"/>
+                            <constraint firstItem="qoO-4D-lYq" firstAttribute="top" secondItem="5hF-77-g8f" secondAttribute="top" constant="8" id="jKU-iV-tje"/>
+                            <constraint firstItem="qoO-4D-lYq" firstAttribute="leading" secondItem="5hF-77-g8f" secondAttribute="leading" constant="8" id="yR8-eG-R73"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="5hF-77-g8f" secondAttribute="bottom" constant="8" id="634-xE-sZg"/>
-                    <constraint firstItem="5hF-77-g8f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="PoT-iu-CfW"/>
-                    <constraint firstItem="5hF-77-g8f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="idb-fo-G2L"/>
-                    <constraint firstAttribute="trailing" secondItem="5hF-77-g8f" secondAttribute="trailing" constant="8" id="yjR-cg-LmR"/>
+                    <constraint firstAttribute="bottom" secondItem="5hF-77-g8f" secondAttribute="bottom" constant="2" id="634-xE-sZg"/>
+                    <constraint firstItem="5hF-77-g8f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="PoT-iu-CfW"/>
+                    <constraint firstItem="5hF-77-g8f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="idb-fo-G2L"/>
+                    <constraint firstAttribute="trailing" secondItem="5hF-77-g8f" secondAttribute="trailing" constant="2" id="yjR-cg-LmR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

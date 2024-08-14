@@ -25,6 +25,9 @@ extension SearchViewController: UITextFieldDelegate {
         }
         
         Task {
+            activeIndicator.startAnimating()
+            recipesTableView.isHidden = true
+            emptyStateView.isHidden = true
             await searchViewModel.searchForRecipe(by: searchKey)
         }
     }

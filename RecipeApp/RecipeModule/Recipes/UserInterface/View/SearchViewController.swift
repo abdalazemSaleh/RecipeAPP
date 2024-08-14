@@ -39,7 +39,8 @@ class SearchViewController: UIViewController {
     @IBOutlet private(set) var searchTextField: UITextField!
     @IBOutlet private(set) var healthFilterCollectionView: UICollectionView!
     @IBOutlet private(set) var recipesTableView: UITableView!
-    @IBOutlet private weak var emptyStateView: EmptyStateView!
+    @IBOutlet private(set) weak var activeIndicator: UIActivityIndicatorView!
+    @IBOutlet private(set) weak var emptyStateView: EmptyStateView!
     
     // MARK: - VIEW MODEL
     
@@ -103,12 +104,14 @@ class SearchViewController: UIViewController {
     }
     
     private func reloadTableView() {
+        activeIndicator.stopAnimating()
         emptyStateView.isHidden = true
         recipesTableView.isHidden = false
         recipesTableView.reloadData()
     }
     
     private func showEmptyState() {
+        activeIndicator.stopAnimating()
         emptyStateView.isHidden = false
         recipesTableView.isHidden = true
         recipesTableView.reloadData()
