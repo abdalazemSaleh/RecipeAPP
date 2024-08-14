@@ -14,21 +14,11 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        performSearch()
+        guard let searchKey = searchTextField.text, !searchKey.isEmpty else {
+            return false
+        }
+        searchViewModel.searchKeyPassthroughSubject.send(searchKey)
         textField.resignFirstResponder()
         return true
-    }
-    
-    private func performSearch() {
-        guard let searchKey = searchTextField.text, !searchKey.isEmpty else {
-            return
-        }
-        
-        Task {
-            activeIndicator.startAnimating()
-            recipesTableView.isHidden = true
-            emptyStateView.isHidden = true
-            await searchViewModel.searchForRecipe(by: searchKey)
-        }
-    }
+    }    
 }

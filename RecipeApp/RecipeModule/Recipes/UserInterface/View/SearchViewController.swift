@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     // MARK: - PROPERTYS
     
     var selectedIndexPath: IndexPath?
+    var isDefaultSelection = true
     
     private var cancellables: Set<AnyCancellable> = []
     private(set) var searchViewModel: SearchViewModel
@@ -64,18 +65,6 @@ class SearchViewController: UIViewController {
         headerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     }
     
-    private func setUpCollectionView() {
-        healthFilterCollectionView.dataSource = self
-        healthFilterCollectionView.delegate = self
-        healthFilterCollectionView.register(
-            UINib(
-                nibName: HealthFilterCollectionViewCell.identifire,
-                bundle: nil
-            ),
-            forCellWithReuseIdentifier: HealthFilterCollectionViewCell.identifire
-        )
-    }
-        
     private func bindViewModel() {
         
         // recipesArray
@@ -85,18 +74,55 @@ class SearchViewController: UIViewController {
             .sink { [weak self] recipes in
                 guard let self = self else { return }
                 if !recipes.isEmpty {
-                    self.reloadTableView()
+                    reloadTableView()
                 } else {
-                    self.showEmptyState()
+                    showEmptyState()
                 }
-            }.store(in: &cancellables)
+            }
+            .store(in: &cancellables)
         
         // isLoading
         
+        searchViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    startLoading()
+                } else {
+                    activeIndicator.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
         
         // errorMessage
         
+        searchViewModel.errorMessagePassthroughSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                guard let self = self else { return }
+                showAlert(
+                    ofType: .error, message: "Error while geting recipes please try agine later.",
+                    buttonTitle: "OK"
+                )
+            }
+            .store(in: &cancellables)
         
+        // warningMessage
+        
+        searchViewModel.warningMessagePassthroughSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] warningMessage in
+                guard let self = self else { return }
+                showAlert(
+                    ofType: .warning,
+                    message: warningMessage,
+                    buttonTitle: "Search") { [weak self] in
+                        guard let self = self else { return }
+                        self.searchButtonAction()
+                    }
+            }
+            .store(in: &cancellables)
     }
     
     private func searchButtonAction() {
@@ -104,16 +130,20 @@ class SearchViewController: UIViewController {
     }
     
     private func reloadTableView() {
-        activeIndicator.stopAnimating()
         emptyStateView.isHidden = true
         recipesTableView.isHidden = false
         recipesTableView.reloadData()
     }
     
     private func showEmptyState() {
-        activeIndicator.stopAnimating()
         emptyStateView.isHidden = false
         recipesTableView.isHidden = true
         recipesTableView.reloadData()
+    }
+    
+    private func startLoading() {
+        emptyStateView.isHidden = true
+        recipesTableView.isHidden = true
+        activeIndicator.startAnimating()
     }
 }

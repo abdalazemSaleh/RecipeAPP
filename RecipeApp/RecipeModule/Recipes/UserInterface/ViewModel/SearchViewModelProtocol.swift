@@ -15,21 +15,14 @@ enum HealthFilter: String, CaseIterable {
     case Vegan
 }
 
-//protocol SearchViewModelProrocol {
-//    var isLoading: CurrentValueSubject<Bool, Never> { get set }
-//    var errorMessage: CurrentValueSubject<String, Never> { get set }
-//    var searchKey: CurrentValueSubject<String, Never> { get set }
-//    var healthFilter: CurrentValueSubject<HealthFilter, Never> { get set }
-//    var recipesArray: CurrentValueSubject<[RecipeViewItem], Never> { get set }
-//    func getRecipes() async
-//}
-
 protocol SearchViewModelProrocol {
     var isLoading: Bool { get set }
-    var errorMessage: String { get set }
-    var healthFilter: HealthFilter { get set }
+    var errorMessagePassthroughSubject: PassthroughSubject<String, Never> { get set }
+    var warningMessagePassthroughSubject: PassthroughSubject<String, Never> { get set}
+    var searchKeyPassthroughSubject: PassthroughSubject<String, Never> { get set }
+    var healthFilterPassthroughSubject: PassthroughSubject<HealthFilter, Never> { get set }
     var recipesArray: [RecipeViewItem]{ get set }
-    func searchForRecipe(by searchKey: String) async
+    func searchForRecipe() async
 }
 
 

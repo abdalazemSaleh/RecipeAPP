@@ -28,16 +28,16 @@ final class RecipesUseCase: RecipesUseCaseProtocol {
 }
 
 extension RecipesUseCase {
-    func getRecipes(with searchKey: String?, and healthFilter: String?) async throws -> [Recipe] {
+    func getRecipes(with searchKey: String, and healthFilter: String) async throws -> [Recipe] {
         dataSource.isLoading = true
 
         var parameters = Constants.baseQueryItems
-        if let searchKey = searchKey {
-            parameters["q"] = searchKey
-        }
-        if let healthFilter = healthFilter {
+        parameters["q"] = searchKey
+        if healthFilter != "Non" {
             parameters["healthFilter"] = healthFilter
         }
+        
+        print("Final parameters is ", parameters)
         
         guard let recipes = try await repository.getRecipes(RecipesParameters(parameters: parameters)) else {
             return []

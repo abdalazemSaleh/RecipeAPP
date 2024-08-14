@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RecipesUseCaseProtocol {
-    func getRecipes(with searchKey: String?, and healthFilter: String?) async throws -> [Recipe]
+    func getRecipes(with searchKey: String, and healthFilter: String) async throws -> [Recipe]
     func notifyLoading() -> Bool
     func stopLoading() -> Bool
 }

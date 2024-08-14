@@ -51,6 +51,7 @@
 		7F8160702C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81606F2C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift */; };
 		7F8160722C6CD09300FEFCD5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160712C6CD09300FEFCD5 /* String.swift */; };
 		7F8160752C6CD12D00FEFCD5 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160742C6CD12D00FEFCD5 /* CachedImageView.swift */; };
+		7F8160772C6CDF8400FEFCD5 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8160762C6CDF8400FEFCD5 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		7F81606F2C6CCAF400FEFCD5 /* SearchViewController+TextFieldExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TextFieldExtentions.swift"; sourceTree = "<group>"; };
 		7F8160712C6CD09300FEFCD5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7F8160742C6CD12D00FEFCD5 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		7F8160762C6CDF8400FEFCD5 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +404,7 @@
 			children = (
 				7F81605A2C6BE7D700FEFCD5 /* UIView.swift */,
 				7F8160712C6CD09300FEFCD5 /* String.swift */,
+				7F8160762C6CDF8400FEFCD5 /* UIViewController.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				7F81600F2C6B914C00FEFCD5 /* APIRequestError.swift in Sources */,
 				7F8160132C6B914C00FEFCD5 /* HTTPMethod.swift in Sources */,
 				7F8160432C6BB68500FEFCD5 /* RecipesUseCaseProtocol.swift in Sources */,
+				7F8160772C6CDF8400FEFCD5 /* UIViewController.swift in Sources */,
 				7F8160322C6B975100FEFCD5 /* RecipeAPIRequest.swift in Sources */,
 				7F8160202C6B940900FEFCD5 /* GFNavigationController.swift in Sources */,
 				7F8160532C6BBFDA00FEFCD5 /* SearchViewModelProtocol.swift in Sources */,
