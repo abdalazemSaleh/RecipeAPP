@@ -39,9 +39,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = searchViewModel.recipesArray[indexPath.section]
-        let vc = RecipeDetailsViewController(id: extractRecipeID(from: recipe.uri))
-        vc.title = recipe.title
-        navTo(vc)
+        let recipeDetailsModuleFactory = RecipeDetailsModuleFactory()
+        let recipeID = extractRecipeID(from: recipe.uri)
+        let recipeDetailsViewController = recipeDetailsModuleFactory.makeViewController(with: recipeID)
+        navTo(recipeDetailsViewController)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

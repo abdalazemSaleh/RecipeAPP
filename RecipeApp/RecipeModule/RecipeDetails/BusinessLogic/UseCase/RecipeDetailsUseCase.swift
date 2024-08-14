@@ -29,10 +29,10 @@ final class RecipeDetailsUseCase: RecipeDetailsUseCaseProtocol {
     private func convert(_ response: RecipeRepositoryDetailsResponse) -> RecipeDetails {
         return RecipeDetails(
             label: response.label ?? "Not Founded",
-            image: response.label ?? "",
-            calories: response.calories ?? 0.0,
-            totalWeight: response.totalWeight ?? 0.0,
-            totalTime: response.totalTime ?? 0.0,
+            image: response.image ?? "",
+            calories: response.calories?.toCaloriesFormat() ?? "0 cal",
+            totalWeight: response.totalWeight?.toWeightFormat() ?? "0 kg",
+            totalTime: response.totalTime?.toTimeFormat() ?? "2h 30m",
             dietLabels: response.dietLabels ?? [],
             ingredientLines: response.ingredientLines ?? []
         )

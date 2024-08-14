@@ -6,18 +6,23 @@
 //
 
 import UIKit
+import Combine
+
+protocol RecipeDetailsViewControllerDependenciesProtocol {
+    var recipeDetailsViewModel: RecipeDetailsViewModel { get set }
+}
 
 class RecipeDetailsViewController: UIViewController {
     
     // MARK: - PROPERTYS
     
-    var id: String
-
+    private(set) var recipeDetailsViewModel: RecipeDetailsViewModel
+    private var cancellables: Set<AnyCancellable> = []
+    
     // MARK: - INIT
     
-    init(id: String) {
-        self.id = id
-        print("Recipe id", id)
+    init(dependencies: RecipeDetailsViewControllerDependenciesProtocol) {
+        recipeDetailsViewModel = dependencies.recipeDetailsViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,59 +30,102 @@ class RecipeDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - IBOutlet
+    @IBOutlet private var containerView: UIView!
+    @IBOutlet private var recipeImageView: CachedImageView!
+    @IBOutlet private var recipeLable: UILabel!
+    @IBOutlet private var recipeCaloriesLabel: UILabel!
+    @IBOutlet private var recipeWeightLabel: UILabel!
+    @IBOutlet private var recipeTimeLabel: UILabel!
+    @IBOutlet weak var dietLabelStackView: UIStackView!
+    @IBOutlet var recipeDietLabelCollectionView: UICollectionView!
+    @IBOutlet var recipeIngredientTableView: UITableView!
+    @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var activeIndicator: UIActivityIndicatorView!
+    
     // MARK: - VIEW LIFE CYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let repositoryDependencies = RecipeRepositoryDependencies(
-            client: RecipeAPIClient(client: BaseAPIClient())
-        )
-        let repository = RecipeRepository(dependencies: repositoryDependencies)
-        let useCaseDependencies = RecipesDetailsUseCaseDependencies(
-            dataSource: RecipeDetailsDataSource(),
-            repository: repository
-        )
-        let useCase = RecipeDetailsUseCase(dependencie: useCaseDependencies)
-        
-        Task {
-            do {
-                let recipe = try await useCase.getRecipe(by: id)
-                print("Recipe detaisls ", recipe)
-            } catch {
-                print("Error is ", error.localizedDescription)
-            }
-        }
+        setUpCollectionView()
+        setUpTableView()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    // MARK: - FUNCTIONS
+    
+    private func updateUI(recipe: RecipeDetailsViewItem) {
+        recipeImageView.imageURL = recipe.image.asURL
+        recipeLable.text = recipe.label
+        recipeCaloriesLabel.text = recipe.calories
+        recipeWeightLabel.text = recipe.totalWeight
+        recipeTimeLabel.text = recipe.totalTime
+        if !recipeDetailsViewModel.recipeLabels.isEmpty {
+            dietLabelStackView.isHidden = false
+            recipeDietLabelCollectionView.reloadData()
+        } else {
+            dietLabelStackView.isHidden = true
+        }
+    }
+    
+    private func startLoading() {
+        containerView.isHidden = true
+        activeIndicator.startAnimating()
+    }
+    
+    private func stopLoading() {
+        containerView.isHidden = false
+        activeIndicator.stopAnimating()
     }
 }
 
+// MARK: - RECIPE DETAILS DATA BINDE
 
-// MARK: - RecipeRepositoryDependencies
-
-private struct RecipeRepositoryDependencies: RecipeRepositoryDependenciesProtocol {
-    var client: RecipeAPIClientProtocol
+extension RecipeDetailsViewController {
+    private func bindViewModel() {
+        recipeDetailsViewModel.recipeDetailsViewItem
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] recipeDetails in
+                guard let self = self else { return }
+                updateUI(recipe: recipeDetails)
+            }
+            .store(in: &cancellables)
+        
+        // isLoading
+        
+        recipeDetailsViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    startLoading()
+                } else {
+                    stopLoading()
+                }
+            }
+            .store(in: &cancellables)
+        
+        // errorMessage
+        
+        recipeDetailsViewModel.errorMessagePassthroughSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                guard let self = self else { return }
+                showAlert(
+                    ofType: .error, message: "Error while geting recipes please try agine later.",
+                    buttonTitle: "OK"
+                )
+            }
+            .store(in: &cancellables)        
+    }
 }
-
-// MARK: - RecipesUseCaseDependenciesProtocol
-
-private struct RecipesDetailsUseCaseDependencies: RecipeDetailsUseCaseDependenciesProtocol {
-    var dataSource: RecipeDetailsDataSourceProtocol
-    var repository: RecipesRepositoryProtocol
-}
-
-//// MARK: -SearchViewModelDependenciesProtocol
-//
-//private struct SearchViewModelDependencies: SearchViewModelDependenciesProtocol {
-//    var useCase: RecipesUseCaseProtocol
-//}
-//
-//// MARK: - AccommodationViewDependenciesProtocol
-//
-//private struct SearchViewControllerDependencies: SearchViewControllerDependenciesProtocol {
-//    var searchViewModel: SearchViewModel
-//}

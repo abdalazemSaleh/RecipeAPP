@@ -51,7 +51,7 @@ private struct SearchViewModelDependencies: SearchViewModelDependenciesProtocol 
     var useCase: RecipesUseCaseProtocol
 }
 
-// MARK: - AccommodationViewDependenciesProtocol
+// MARK: - SearchViewDependenciesProtocol
 
 private struct SearchViewControllerDependencies: SearchViewControllerDependenciesProtocol {
     var searchViewModel: SearchViewModel

@@ -16,9 +16,9 @@ protocol  RecipeDetailsUseCaseProtocol {
 struct RecipeDetails {
     var label: String
     var image: String
-    var calories: Float
-    var totalWeight: Float
-    var totalTime: Float
+    var calories: String
+    var totalWeight: String
+    var totalTime: String
     var dietLabels: [String]
     var ingredientLines: [String]
 }

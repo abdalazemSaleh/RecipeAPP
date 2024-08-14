@@ -15,16 +15,14 @@ protocol SearchViewModelDependenciesProtocol {
 final class SearchViewModel {
     
     // MARK: - PROPERTYS
-        
-    @Published var isLoading: Bool = false
-    @Published var recipesArray: [RecipeViewItem] = []
-    var errorMessagePassthroughSubject = PassthroughSubject<String, Never>()
-    var warningMessagePassthroughSubject = PassthroughSubject<String, Never>()
-    var searchKeyPassthroughSubject = PassthroughSubject<String, Never>()
-    var healthFilterPassthroughSubject = PassthroughSubject<HealthFilter, Never>()
-    
     private var searchKey: String = ""
     private var healthFilter: HealthFilter = .Non
+    @Published var recipesArray: [RecipeViewItem] = []
+    var searchKeyPassthroughSubject = PassthroughSubject<String, Never>()
+    var healthFilterPassthroughSubject = PassthroughSubject<HealthFilter, Never>()
+    var warningMessagePassthroughSubject = PassthroughSubject<String, Never>()
+    var errorMessagePassthroughSubject = PassthroughSubject<String, Never>()
+    @Published var isLoading: Bool = false
     
     private let useCase: RecipesUseCaseProtocol
     private var cancellables: Set<AnyCancellable> = []
@@ -42,7 +40,6 @@ final class SearchViewModel {
         
         searchKeyPassthroughSubject
             .sink { [weak self] searchKey in
-                print("i come from search key subkjec")
                 guard let self = self else { return }
                 self.searchKey = searchKey
                 Task {
